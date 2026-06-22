@@ -1,0 +1,708 @@
+/* ==========================================================================
+   VARIABLES & RESETS
+   ========================================================================== */
+   :root {
+    --bg-dark: #050508;
+    --bg-card: #0b0b14;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --blue-electric: #3b82f6;
+    --purple-cyber: #8b5cf6;
+    --font-heading: 'Syne', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+}
+
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Suppression des styles par défaut des liens */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   NAVBAR STYLES
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(5, 5, 8, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: var(--purple-cyber);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.nav-links a:hover {
+    color: var(--blue-electric);
+}
+
+.nav-links .lab-link {
+    color: var(--purple-cyber);
+    font-weight: 600;
+}
+
+.btn-talk {
+    background: #ffffff;
+    color: #000000;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;
+    border: 1px solid #ffffff;
+    transition: var(--transition-smooth);
+}
+
+.btn-talk:hover {
+    background: transparent;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   HERO SECTION (Inspiré par le minimalisme sombre d'ARIK)
+   ========================================================================== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem 2rem;
+}
+
+/* Effet de lueur violet/bleu en arrière-plan */
+.hero-bg-glow {
+    position: absolute;
+    top: 10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, rgba(59, 130, 246, 0.03) 50%, rgba(0,0,0,0) 100%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Avatar fusionné avec l'obscurité */
+.hero-avatar-wrapper {
+    position: absolute;
+    top: 4rem;
+    width: 320px;
+    height: 320px;
+    z-index: 2;
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.hero-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: grayscale(100%) contrast(110%);
+}
+
+/* Masque dégradé pour cacher le bas de la photo vers le noir complet */
+.avatar-gradient-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 40%, var(--bg-dark) 95%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 850px;
+    margin-top: 12rem; /* Laisse de la place à la photo */
+}
+
+.hero-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--blue-electric);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    color: #ffffff;
+    margin-bottom: 2rem;
+}
+
+.hero-tagline {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 650px;
+    margin: 0 auto 3rem auto;
+}
+
+/* Mise en valeur textuelle */
+.highlight-blue { color: #ffffff; font-weight: 400; }
+.highlight-gradient {
+    background: linear-gradient(90deg, var(--blue-electric), var(--purple-cyber));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+/* Boutons */
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--blue-electric), var(--purple-cyber));
+    color: #ffffff;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   STATISTIQUES
+   ========================================================================== */
+.hero-stats {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    max-width: 1100px;
+    padding: 2rem 2rem 0 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    display: grid;
+    grid-template-cols: repeat(4, 15fr);
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: left;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: var(--font-heading);
+}
+
+.stat-number.text-blue { color: var(--blue-electric); }
+.stat-number.text-purple { color: var(--purple-cyber); }
+
+.stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555566;
+    margin-top: 0.25rem;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   ANIMATIONS & RESPONSIVE TRICKS
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Tablettes et Mobiles */
+@media (max-width: 768px) {
+    .nav-links, .btn-talk { display: none; } /* On fera un menu burger en JS après */
+    .hero-stats {
+        position: static;
+        grid-template-cols: repeat(2, 1fr);
+        margin-top: 4rem;
+        gap: 1.5rem;
+    }
+    .hero-avatar-wrapper { width: 240px; height: 240px; }
+    .hero-actions { flex-direction: column; width: 100%; max-width: 300px; }
+}
+/* ==========================================================================
+   SECTION PROJETS (Style Inspiré d'ARIK - 808a0ce5eaf0482115aa671a8a386235.jpg)
+   ========================================================================== */
+   .projects-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--blue-electric);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* Grille de 5 projets */
+.projects-grid {
+    display: grid;
+    grid-template-cols: repeat(2, 1fr);
+    gap: 2.5rem;
+}
+
+/* Cartes de projets */
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Le projet majeur prend les 2 colonnes */
+.large-card {
+    grid-column: span 2;
+    display: grid;
+    grid-template-cols: 1.2fr 1fr;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.2);
+    box-shadow: 0 20px 40px -15px rgba(5, 5, 8, 0.9);
+}
+
+/* Gestion de l'image du projet */
+.project-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    background: #11111e;
+}
+
+.large-card .project-image-wrapper {
+    height: 100%;
+    min-height: 400px;
+}
+
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%) contrast(105%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.05);
+    filter: grayscale(0%) contrast(100%);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(5, 5, 8, 0.4), transparent);
+}
+
+/* Infos des projets */
+.project-info {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.8rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tag-blue {
+    background: rgba(59, 130, 246, 0.08);
+    color: var(--blue-electric);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.tag-purple {
+    background: rgba(139, 92, 246, 0.08);
+    color: var(--purple-cyber);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.project-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.project-name {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.project-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.project-link {
+    font-size: 0.9rem;
+    color: var(--purple-cyber);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+}
+
+.project-link:hover {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   RESPONSIVE GRID
+   ========================================================================== */
+@media (max-width: 968px) {
+    .large-card {
+        grid-template-cols: 1fr;
+    }
+    .projects-grid {
+        grid-template-cols: 1fr;
+        gap: 2rem;
+    }
+    .large-card {
+        grid-column: span 1;
+    }
+    .project-image-wrapper, .large-card .project-image-wrapper {
+        height: 250px;
+        min-height: 250px;
+    }
+    .project-info {
+        padding: 1.5rem;
+    }
+}
+/* ==========================================================================
+   SECTION À PROPOS (Look Studio Cyber)
+   ========================================================================== */
+   .about-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-cols: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-main-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.about-paragraph {
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Boite structure parcours */
+.about-structure-box {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--blue-electric);
+    padding: 1.5rem;
+    border-radius: 0 16px 16px 0;
+    margin-top: 2.5rem;
+}
+
+.struct-row {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+.struct-row:last-child { margin-bottom: 0; }
+.struct-row span { color: var(--text-muted); }
+
+/* Galerie Hobbies (Grid imbriquée) */
+.about-gallery-column {
+    display: grid;
+    grid-template-cols: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* La première photo (IUC) prend tout le haut de la mini-grille */
+.large-item {
+    grid-column: span 2;
+    height: 260px;
+}
+
+/* Le bloc vidéo IA prend tout le bas */
+.video-item {
+    grid-column: span 2;
+    height: 240px;
+    border-color: rgba(139, 92, 246, 0.2);
+}
+
+.gallery-img, .gallery-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(40%) contrast(105%);
+    transition: var(--transition-smooth);
+}
+
+.gallery-item:hover .gallery-img {
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.03);
+}
+
+/* Légendes sur les photos */
+.gallery-caption, .gallery-caption-purple {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(5, 5, 8, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.gallery-caption-purple {
+    color: var(--purple-cyber);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* ==========================================================================
+   SECTION CONTACT & FOOTER
+   ========================================================================== */
+.contact-section {
+    background: #030306;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 8rem 2rem 4rem 2rem;
+    margin-top: 6rem;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 4rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-cols: 1fr 1.3fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+/* Infos directes */
+.contact-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 16px;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.info-icon { font-size: 2rem; }
+.info-card h4 { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem; }
+.info-card p { font-size: 1.1rem; color: #ffffff; font-weight: 600; }
+
+/* Formulaire */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.2rem;
+    border-radius: 12px;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--purple-cyber);
+    background: rgba(139, 92, 246, 0.02);
+}
+
+.btn-submit {
+    align-self: flex-start;
+    border: none;
+}
+
+/* Bas de page */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    padding-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links { display: flex; gap: 2rem; font-weight: 600; }
+.social-links a:hover { color: #ffffff; }
+.tiktok-link { color: var(--purple-cyber); }
+.copyright { font-size: 0.85rem; color: #444455; }
+
+/* ==========================================================================
+   RESPONSIVE DESIGN COMPLÉMENTAIRE
+   ========================================================================== */
+@media (max-width: 968px) {
+    .about-grid, .contact-grid {
+        grid-template-cols: 1fr;
+        gap: 3rem;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+}
