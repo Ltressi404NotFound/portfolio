@@ -29,6 +29,40 @@ function initNavbarScroll() {
         }
     });
 }
+// À appeler dans ton bloc de départ : document.addEventListener('DOMContentLoaded', () => { ... initSkillsFilter(); });
+
+function initSkillsFilter() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const skillCards = document.querySelectorAll('.skill-card');
+
+    if (!filterButtons || !skillCards) return;
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Retirer la classe active de tous les boutons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Ajouter la classe au bouton cliqué
+            button.classList.add('active');
+
+            const filterValue = button.getAttribute('data-filter');
+
+            skillCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+
+                if (filterValue === 'all' || filterValue === cardCategory) {
+                    card.classList.remove('hidden');
+                    // Petit effet d'apparition fluide
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                    }, 50);
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+}
 function initScrollReveal() {
     // On cible les éléments du Hero ET nos nouvelles cartes de projets
     const fadeElements = document.querySelectorAll('.hero-subtitle, .hero-title, .hero-tagline, .hero-actions, .stat-item, .project-card');

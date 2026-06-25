@@ -691,7 +691,361 @@ a {
 .social-links a:hover { color: #ffffff; }
 .tiktok-link { color: var(--purple-cyber); }
 .copyright { font-size: 0.85rem; color: #444455; }
+/* ==========================================================================
+   SECTION COMPÉTENCES
+   ========================================================================== */
+   .skills-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
 
+.skills-filters {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.filter-btn.active[data-filter="tools"] {
+    background: var(--purple-cyber);
+    color: #ffffff;
+    border-color: var(--purple-cyber);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+/* Grille des logos */
+.skills-grid {
+    display: grid;
+    grid-template-cols: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.skill-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    transition: var(--transition-smooth);
+}
+
+/* Animations au survol du logo */
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.text-purple-glow:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+}
+
+/* Taille des icônes de logos officiers */
+.skill-icon {
+    font-size: 2.5rem;
+}
+
+.skill-icon-emoji {
+    font-size: 2.3rem;
+}
+
+.skill-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Animation de filtrage JS */
+.skill-card.hidden {
+    display: none;
+}
+
+/* ==========================================================================
+   SECTION LABORATOIRE IA (Style Laboratoire Cyber / Pas d'émojis)
+   ========================================================================== */
+   .lab-section {
+    background: linear-gradient(to bottom, #050508, #090614, #050508);
+    border-top: 1px solid rgba(139, 92, 246, 0.05);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.05);
+    padding: 8rem 2rem;
+}
+
+.lab-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.lab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.text-gradient-purple {
+    background: linear-gradient(90deg, #8b5cf6, #d946ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Lien TikTok Pro avec point clignotant */
+.lab-rss-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--purple-cyber);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.lab-rss-link:hover {
+    background: rgba(139, 92, 246, 0.05);
+    border-color: var(--purple-cyber);
+    color: #ffffff;
+}
+
+.pulse-indicator {
+    width: 6px;
+    height: 6px;
+    background-color: #d946ef;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px #d946ef;
+    animation: indicatorPulse 1.5s infinite;
+}
+
+/* Grille Asymétrique */
+.lab-grid {
+    display: grid;
+    grid-template-cols: 1.5fr 1fr;
+    gap: 2.5rem;
+}
+
+/* Carte Principale (Vidéo) */
+.lab-main-card {
+    grid-row: span 2;
+    background: #0d0d1a;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.lab-video-container {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background: #000;
+}
+
+.lab-video-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.lab-video-status {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: rgba(217, 70, 239, 0.15);
+    border: 1px solid rgba(217, 70, 239, 0.3);
+    color: #d946ef;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+.lab-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.lab-meta-tags {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.lab-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.lab-project-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.lab-project-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.lab-tech-stack {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: var(--purple-cyber);
+}
+
+/* Cartes Secondaires */
+.lab-sub-card {
+    background: #0b0b14;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    display: grid;
+    grid-template-cols: 120px 1fr;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.lab-sub-card:hover {
+    border-color: rgba(139, 92, 246, 0.2);
+    transform: translateX(5px);
+}
+
+.sub-card-graphic {
+    background: #07070d;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Effets abstraits pour remplacer les émojis */
+.glow-core {
+    width: 20px;
+    height: 20px;
+    background: var(--blue-electric);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--blue-electric);
+}
+
+.audio-waves {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 30px;
+}
+.audio-waves span {
+    width: 3px;
+    background: var(--purple-cyber);
+    border-radius: 2px;
+}
+.audio-waves span:nth-child(1) { height: 15px; }
+.audio-waves span:nth-child(2) { height: 28px; }
+.audio-waves span:nth-child(3) { height: 20px; }
+.audio-waves span:nth-child(4) { height: 32px; }
+.audio-waves span:nth-child(5) { height: 10px; }
+
+.sub-card-content {
+    padding: 2rem;
+}
+
+.lab-tag-mini {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--purple-cyber);
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.lab-sub-card h4 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.lab-sub-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   ANIMATIONS & RESPONSIVE
+   ========================================================================== */
+@keyframes indicatorPulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px #d946ef; }
+    100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+@media (max-width: 968px) {
+    .lab-grid {
+        grid-template-cols: 1fr;
+    }
+    .lab-main-card {
+        grid-row: auto;
+    }
+    .lab-video-container {
+        height: 250px;
+    }
+    .lab-content {
+        padding: 2rem;
+    }
+    .lab-sub-card {
+        grid-template-cols: 1fr;
+    }
+    .sub-card-graphic {
+        height: 80px;
+    }
+}
 /* ==========================================================================
    RESPONSIVE DESIGN COMPLÉMENTAIRE
    ========================================================================== */
